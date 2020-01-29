@@ -49,6 +49,7 @@ module.exports = {
       compounds: [
         'namespace',
         'class',
+        'interface',
         'struct',
         'union',
         'typedef',
