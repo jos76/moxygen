@@ -18,7 +18,7 @@ module.exports = {
     if (Array.isArray(code)) {
       var refs, s = '', isInline = false;
       code.forEach(function (e) {
-        refs = e.split(/(\[.*\]\(.*\)|\n|\s{2}\n)/g);
+        refs = e.split(/(\[[\w\s]*\]\([^[]*\)|\n|\s{2}\n)/g);
         refs.forEach(function (f) {
           if (f.charAt(0) == '[') {
             // link
@@ -108,7 +108,7 @@ module.exports = {
   },
 
   writeCompound: function(compound, contents, references, options) {
-    this.writeFile(this.compoundPath(compound, options), contents.map(function(content) {
+    this.writeFile(path.join(options.outputDir, this.compoundPath(compound, options)), contents.map(function(content) {
       return this.resolveRefs(content, compound, references, options);
     }.bind(this)));
   },
